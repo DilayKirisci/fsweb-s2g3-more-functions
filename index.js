@@ -16,8 +16,12 @@
   örnek output: ""
 */
 
-function dosyaAdiniBul(/* kodlar buraya */) {
-  // kodlar buraya
+function dosyaAdiniBul(path) {
+	if (!path) {
+		return "";
+	}
+	const splittedPath = path.split("/");
+	return splittedPath[splittedPath.length - 1];
 }
 
 /*
@@ -38,8 +42,12 @@ function dosyaAdiniBul(/* kodlar buraya */) {
   örnek output: 104
 */
 
-function ortalamaBul(/* kodlar buraya */) {
-  // kodlar buraya
+function ortalamaBul(sayi) {
+	if (sayi.length === 0) {
+		return null;
+	} else {
+		return sayi.reduce((total, current) => total + current, 0) / sayi.length;
+	}
 }
 
 /*
@@ -62,14 +70,25 @@ function ortalamaBul(/* kodlar buraya */) {
   örnek output: [109, 216, 288, 143, 185, 194]
 */
 
-function ortalamadanBuyukleriBul(/* kodlar buraya */) {
-  // kodlar buraya
+const sayilar = [1, 2, 3, 5, 6];
+
+function ortalamadanBuyukleriBul(sayiCs, ortalama) {
+	if (sayiCs.length === 0) {
+		return null;
+	} else if (sayiCs.length === 1) {
+		return sayiCs;
+	} else {
+		const ortalamam =
+			sayiCs.reduce((total, current) => total + current, 0) / sayiCs.length;
+		return sayiCs.filter((sayi) => sayi > ortalamam);
+	}
 }
 
+ortalamadanBuyukleriBul(sayilar, ortalamaBul(sayilar));
 /* !!!! Burdan aşağısını değiştirmeyin !!!! */
 function as() {
-  console.log("Kodlar sorunsuz çalışıyor!");
-  return "sa";
+	console.log("Kodlar sorunsuz çalışıyor!");
+	return "sa";
 }
 as();
 export { dosyaAdiniBul, ortalamaBul, ortalamadanBuyukleriBul, as };
